@@ -16,6 +16,7 @@
   "author": "Ossama Tammam",
   "license": "ISC",
   "dependencies": {
+    "@getbrevo/brevo": "^1.0.1",
     "axios": "^1.5.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",

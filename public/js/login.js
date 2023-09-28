@@ -51,10 +51,13 @@ export const signup = async (data) => {
     });
 
     if (res.data.status === "success") {
-      showAlert("success", "Signed up!");
+      showAlert(
+        "success",
+        "Signed up!\nPlease verify your email before logging in.",
+      );
       window.setTimeout(() => {
         location.assign("/");
-      }, 1500);
+      }, 3000);
     }
   } catch (err) {
     showAlert("error", err.response.data.message);

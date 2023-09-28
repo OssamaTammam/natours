@@ -33,6 +33,10 @@ const sendVerificationEmail = async (user, req, next) => {
 };
 
 exports.signUp = catchAsync(async (req, res, next) => {
+  if (await User.findOne({ email: req.body.email })) {
+    return next(new AppError("Email already belongs to another user!", 401));
+  }
+
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -44,12 +48,12 @@ exports.signUp = catchAsync(async (req, res, next) => {
 
   await new Email(newUser, url).sendWelcome();
 
-  //remove password from output
-  newUser.password = undefined;
-
   await sendVerificationEmail(newUser, req, next);
 
   const token = tokens.createJWT(newUser, res);
+
+  //remove password from output
+  newUser.password = undefined;
 
   res.status(201).json({
     status: "success",

@@ -11,10 +11,17 @@ module.exports = class Email {
   }
 
   newTransport() {
-    // TODO: Send emails
-    // if (process.env.NODE_ENV === "production") {
-    //   return 1;
-    // }
+    if (process.env.NODE_ENV === "production") {
+      return nodemailer.createTransport({
+        host: process.env.BREVO_HOST,
+        port: process.env.BREVO_PORT,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: process.env.BREVO_USERNAME, // generated ethereal user
+          pass: process.env.BREVO_API_KEY, // generated ethereal password
+        },
+      });
+    }
 
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
