@@ -15,7 +15,7 @@ router.get("/logout", authController.logOut);
 router.post("/forgot-password", authController.forgotPassword);
 router.patch("/reset-password/:token", authController.resetPassword);
 
-router.post("/verify-email/:token", authController.verifyEmail);
+router.route("/verify-email/:token").get(authController.verifyEmail);
 
 // Being logged in required
 // Protect all routes
