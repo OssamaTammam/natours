@@ -75,7 +75,6 @@ exports.logIn = catchAsync(async (req, res, next) => {
     return next(new AppError("Incorrect email or password", 401)); //401 is unauthorized
   }
 
-  // TODO : Create this functionality
   if (!user.verified) {
     await sendVerificationEmail(user, req, next);
 

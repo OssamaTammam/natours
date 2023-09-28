@@ -41,8 +41,6 @@ process.on("uncaughtException", (err) => {
 });
 
 dotenv.config({ path: "./config.env" });
-// eslint-disable-next-line no-console
-console.log(process.env.NODE_ENV);
 
 const app = require("./app");
 
