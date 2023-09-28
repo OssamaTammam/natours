@@ -16,7 +16,7 @@ Server side rendered website to access API Features is available!
 
 
 # Natours API Endpoints
-- Filtering, sorting, limiting fields and pagination all implemented on any point that return multiple objects!
+- Filtering, sorting, limiting fields and pagination all implemented on any endpoint that returns multiple objects!
 ## Tours
 Get all tours stored in the database
 ```http
