@@ -31,38 +31,31 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 //Set security HTTP headers
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      useDefaults: true,
-      directives: {
-        "default-src": [
-          "self",
-          "http://127.0.0.1:3000",
-          "http://localhost:3000",
-        ],
-        "script-src": [
-          "'self'",
-          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js",
-          "https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js",
-        ],
-        "img-src": [
-          "http://localhost:3000",
-          "https://tile.openstreetmap.org",
-          "http://127.0.0.1:3000",
-        ],
-      },
+// Maybe useful later
+const helmetOptions = {
+  contentSecurityPolicy: {
+    useDefaults: true,
+    directives: {
+      "default-src": ["self", "http://127.0.0.1:3000", "http://localhost:3000"],
+      "script-src": [
+        "'self'",
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js",
+      ],
+      "img-src": ["http://localhost:3000", "http://127.0.0.1:3000"],
     },
-  }),
-);
+  },
+};
+app.use(helmet());
 
 // CORS
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
   }),
 );
+
+app.options("*", cors());
 
 //Development logging
 if (process.env.NODE_ENV === "development") {
