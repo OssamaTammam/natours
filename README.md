@@ -12,18 +12,11 @@ Built to learn backend web development!
 ## Description
 
 Natours is an API built organize tour information in a NoSQL database with advanced authentication and authorization involving multiple user roles.
+Server side rendered website to access API Features is available!
 
 
-## Features
-- User profiles to manage and review tours!
-- Tour reviews
--
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-# Natours API
+# Natours API Endpoints
+- Filtering, sorting, limiting fields and pagination all implemented on any point that return multiple objects!
 ## Tours
 Get all tours stored in the database
 ```http
