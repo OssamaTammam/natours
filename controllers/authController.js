@@ -50,7 +50,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
 
   await sendVerificationEmail(newUser, req, next);
 
-  const token = tokens.createJWT(newUser, res);
+  const token = tokens.createJWT(newUser, res, req);
 
   //remove password from output
   newUser.password = undefined;
@@ -91,7 +91,7 @@ exports.logIn = catchAsync(async (req, res, next) => {
   }
 
   //3. If everything is okay, send token to client
-  const token = tokens.createJWT(user, res);
+  const token = tokens.createJWT(user, res, req);
 
   res.status(200).json({
     status: "success",
@@ -291,7 +291,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   //Done through middleware
 
   //4. Log the user in => send JWT
-  const token = tokens.createJWT(user, res);
+  const token = tokens.createJWT(user, res, req);
 
   res.status(200).json({
     status: "success",
@@ -318,7 +318,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   //4.Log the user in send JWT
-  const token = tokens.createJWT(user, res);
+  const token = tokens.createJWT(user, res, req);
 
   res.status(200).json({
     status: "success",

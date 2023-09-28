@@ -16,7 +16,7 @@ const signJWT = (id) =>
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-exports.createJWT = (user, res) => {
+exports.createJWT = (user, res, req) => {
   const token = signJWT(user._id);
   const cookieOptions = {
     expires: new Date(
@@ -27,7 +27,7 @@ exports.createJWT = (user, res) => {
   };
 
   //For testing using postman we want in dev secure = false
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" || req.secure) {
     cookieOptions.secure = true;
   }
 
